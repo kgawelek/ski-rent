@@ -20,7 +20,7 @@ public class Equipment {
             generator = "equipment_sequence"
     )
     @Column(
-            name = "id",
+            name = "equipment_id",
             nullable = false
     )
     private Long id;
