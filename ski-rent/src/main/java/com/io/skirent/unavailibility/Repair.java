@@ -4,12 +4,13 @@ package com.io.skirent.unavailibility;
 import com.io.skirent.equipment.Equipment;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 @Table(
         name = "repairs"
 )
-public class Repair extends Unavailibility{
+public class Repair extends Unavailability {
 
     @Id
     @SequenceGenerator(
