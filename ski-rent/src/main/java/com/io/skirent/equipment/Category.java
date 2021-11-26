@@ -12,5 +12,6 @@ public enum Category {
     CAP,
     SCARF,
     GLOVES,
+    GOGGLES,
     OTHER;
 }
