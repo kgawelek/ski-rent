@@ -10,7 +10,7 @@ import java.time.LocalDate;
 @Table(
         name = "checkups"
 )
-public class CheckUp extends Unavailibility{
+public class CheckUp extends Unavailability {
 
     @Id
     @SequenceGenerator(
