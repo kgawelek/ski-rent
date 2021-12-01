@@ -2,9 +2,10 @@ package com.io.skirent.unavailibility;
 
 
 import com.io.skirent.equipment.Equipment;
+import com.io.skirent.user.Client;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.util.Set;
 
 @Entity
 @Table(
@@ -28,9 +29,9 @@ public class Rental extends Unavailability {
     )
     private Long id;
 
-    @ManyToOne
+    @ManyToMany
     @JoinColumn(name = "equipment_id")
-    private Equipment equipment;
+    private Set<Equipment> equipmentSet;
 
     @Column(
             name = "accepted",
@@ -53,15 +54,21 @@ public class Rental extends Unavailability {
     )
     private float deposit;
 
+    @ManyToOne
+    @JoinColumn(name = "id")
+    private Client client;
+
+
     public Rental() {
     }
 
-    public Rental(Long id, Equipment equipment, boolean accepted, boolean returned, float deposit) {
+    public Rental(Long id, Set<Equipment> equipmentSet, boolean accepted, boolean returned, float deposit, Client client) {
         this.id = id;
-        this.equipment = equipment;
+        this.equipmentSet = equipmentSet;
         this.accepted = accepted;
         this.returned = returned;
         this.deposit = deposit;
+        this.client = client;
     }
 
     public Long getId() {
@@ -72,12 +79,12 @@ public class Rental extends Unavailability {
         this.id = id;
     }
 
-    public Equipment getEquipment() {
-        return equipment;
+    public Set<Equipment> getEquipmentSet() {
+        return equipmentSet;
     }
 
-    public void setEquipment(Equipment equipment) {
-        this.equipment = equipment;
+    public void setEquipmentSet(Set<Equipment> equipmentSet) {
+        this.equipmentSet = equipmentSet;
     }
 
     public boolean isAccepted() {
@@ -94,5 +101,21 @@ public class Rental extends Unavailability {
 
     public void setReturned(boolean returned) {
         this.returned = returned;
+    }
+
+    public float getDeposit() {
+        return deposit;
+    }
+
+    public void setDeposit(float deposit) {
+        this.deposit = deposit;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
     }
 }
