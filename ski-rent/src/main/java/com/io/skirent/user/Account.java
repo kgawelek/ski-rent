@@ -23,7 +23,7 @@ public class Account {
             generator = "account_sequence"
     )
     @Column(
-            name = "id",
+            name = "user_id",
             nullable = false
     )
     Long id; // package-private
@@ -43,6 +43,14 @@ public class Account {
     )
     String password; // package-private
 
+    public Account() {
+    }
+
+    public Account(Long id, String email, String password) {
+        this.id = id;
+        this.email = email;
+        this.password = password;
+    }
 
     public Long getId() {
         return id;

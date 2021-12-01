@@ -55,7 +55,7 @@ public class Rental extends Unavailability {
     private float deposit;
 
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "user_id")
     private Client client;
 
 
