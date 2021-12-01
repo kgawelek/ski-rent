@@ -5,7 +5,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @MappedSuperclass
-abstract class User extends Account {
+public abstract class User extends Account {
     @Column(
             name = "name",
             nullable = false,
@@ -16,7 +16,6 @@ abstract class User extends Account {
     @Column(
             name = "birthday",
             columnDefinition = "DATE"
-
     )
     private LocalDate dob;
 

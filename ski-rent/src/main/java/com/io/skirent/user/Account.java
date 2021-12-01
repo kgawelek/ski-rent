@@ -10,7 +10,8 @@ import javax.persistence.*;
                 @UniqueConstraint(name = "user_email", columnNames = "email")
         }
 )
-abstract class Account {
+@Inheritance(strategy=InheritanceType.JOINED)
+public class Account {
     @Id
     @SequenceGenerator(
             name = "account_sequence",
