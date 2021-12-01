@@ -8,14 +8,14 @@ import java.time.LocalDate;
 abstract class Unavailability {
 
     @Column(
-            name = "from",
+            name = "dateFrom",
             nullable = false,
             columnDefinition = "DATE"
     )
     LocalDate from; // package-private
 
     @Column(
-            name = "to",
+            name = "dateTo",
             nullable = false,
             columnDefinition = "DATE"
     )
