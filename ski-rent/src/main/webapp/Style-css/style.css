@@ -23,7 +23,7 @@ body {
 #gora_kontenera {
     position: relative;
     margin: 10px;
-    background-image: url(../images/kontener_gora.jpg);
+    background-image: url(../images/containerTop.jpg);
     background-color: rgb(223, 233, 247);
     width: 939px;
     height: 175px;
@@ -62,7 +62,6 @@ a:hover {
     position: absolute;
     right: 40px;
     top: 20px;
-    /* font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; */
     font-family: Georgia, 'Times New Roman', Times, serif;
     line-height: 135%;
     font-size: 15px;
@@ -118,7 +117,6 @@ a:hover {
     border-bottom: none;
     font-size: 16px;
     font-weight: bold;
-    /* font-style: italic; */
 }
 
 #srodkowe_menu li span.link2 {
@@ -375,7 +373,6 @@ label {
 
 .input_button_submit {
     width: 70px;
-    /* font-family: Verdana, Geneva, Tahoma, sans-serif; */
     font-family: Georgia, 'Times New Roman', Times, serif;
     padding: 5px 13px;
     border: solid rgb(189, 207, 231) 1px;
