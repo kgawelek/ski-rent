@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -30,13 +31,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     private static final String adminRole = "ADMIN";
     private static final String employeeRole = "EMPLOYEE";
     private static final String clientRole = "CLIENT";
-    private static final String userRole = "USER";
 
-    // login page data:
+    // login:
     private static final String loginPage = "/login.jsp";
     private static final String loginFailurePostfix = "?error=1";
     private static final String loginProcessingUrl = "/login";
-    private static final String logoutSuccessfulUrl = "/index.html";
+
+    // logout:
+    private static final String logoutUrl = "/logout";
+    private static final String logoutSuccessfulUrl = "/index.html?logout=success";
 
     /**
      * Accounts configuration: setting users and their roles, pulling data from database.
@@ -58,9 +61,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 from accounts ac join client cl on ac.user_id = cl.id
                 where email = ?
                 """
-                .formatted(rolePrefix + adminRole + ", " + rolePrefix + employeeRole + ", " + rolePrefix + userRole, // admin roles
-                    rolePrefix + employeeRole + ", " + rolePrefix + userRole, // employee roles
-                    rolePrefix + clientRole + ", " + rolePrefix + userRole); // client roles
+                .formatted(rolePrefix + adminRole, // admin role
+                    rolePrefix + employeeRole, // employee role
+                    rolePrefix + clientRole); // client role
 
         // retrieve auth data from database:
         auth.jdbcAuthentication()
@@ -84,10 +87,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers(adminUri).hasRole(adminRole)
-                .antMatchers(employeeUri).hasRole(employeeRole)
+                .antMatchers(employeeUri).hasAnyRole(employeeRole, adminRole)
                 .antMatchers(clientUri).hasRole(clientRole)
-                .antMatchers(registerUri).permitAll()
-                .antMatchers(apiUserUri).hasRole(userRole)
+                .antMatchers(registerUri).anonymous()
+                .antMatchers(apiUserUri).hasAnyRole(adminRole, employeeRole, clientRole)
                 .anyRequest().permitAll()
                 .and()
                 .formLogin().loginPage(loginPage)
@@ -96,6 +99,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
                 .logout()
-                .logoutSuccessUrl(logoutSuccessfulUrl);
+                .logoutRequestMatcher(new AntPathRequestMatcher(logoutUrl))
+                .logoutSuccessUrl(logoutSuccessfulUrl)
+                .deleteCookies("JSESSIONID")
+                .invalidateHttpSession(true);
     }
 }

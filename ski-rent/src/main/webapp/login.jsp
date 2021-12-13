@@ -1,5 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 
 <html lang="pl" style="scroll-behavior: smooth ;">
 
@@ -22,7 +24,7 @@
                         <ul>
                             <li><a href="index.html">Strona główna</a></li>
                             <li><a href="link">Cennik</a></li>
-                            <li><a href="login.html">Logowanie</a></li>
+                            <li><a href="login.jsp">Logowanie</a></li>
                             <li><a href="link">Rejestracja</a></li>
                         </ul>
                     </div>
