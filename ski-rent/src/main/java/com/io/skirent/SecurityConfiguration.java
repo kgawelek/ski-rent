@@ -1,16 +1,15 @@
 package com.io.skirent;
 
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
-import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
@@ -22,7 +21,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     private static final String adminUri = "/admin/**";
     private static final String employeeUri = "/employee/**";
     private static final String clientUri = "/client/**";
-    private static final String apiUri = "/api/**";
+    private static final String apiUserUri = "/api/user/**";
 
     private static final String adminRole = "ADMIN";
     private static final String employeeRole = "EMPLOYEE";
@@ -39,14 +38,28 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
 
         // TODO: change to database ↓
-        auth.inMemoryAuthentication()
-                .withUser("user")
-                .password(encoder.encode("password"))
-                .roles("USER")
-                .and()
-                .withUser("admin")
-                .password(encoder.encode("admin"))
-                .roles("ADMIN");
+//        auth.inMemoryAuthentication()
+//                .withUser("user")
+//                .password(encoder.encode("password"))
+//                .roles("USER")
+//                .and()
+//                .withUser("admin")
+//                .password(encoder.encode("admin"))
+//                .roles("ADMIN");
+
+        auth.jdbcAuthentication()
+                .dataSource(dataSource)
+                .withDefaultSchema()
+                .usersByUsernameQuery(
+                        "select email,\"password\",true "
+                                + "from accounts ac join \"admin\" ad on ac.user_id = ad.id"
+                                + "where email = ?"
+                )
+                .authoritiesByUsernameQuery(
+                        "select email,ROLE_ADMIN "
+                                + "from accounts ac join \"admin\" ad on ac.user_id = ad.id"
+                                + "where email = ?"
+                );
     }
 
     @Override
@@ -55,7 +68,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers(adminUri).hasRole(adminRole)
                 .antMatchers(employeeUri).hasRole(employeeRole)
                 .antMatchers(clientUri).hasRole(clientRole)
-                .antMatchers(apiUri).hasRole(userRole)
+                .antMatchers(apiUserUri).hasRole(userRole)
                 .anyRequest().permitAll()
                 .and()
                 .formLogin().loginPage(loginPage)
