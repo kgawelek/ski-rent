@@ -338,6 +338,7 @@ label {
     text-shadow: 0 0 1px rgb(29, 55, 88);
 }
 
+#username,
 #email,
 #password,
 #name,
@@ -352,6 +353,7 @@ label {
     outline: 5px solid rgb(213, 228, 247);
 }
 
+#username:focus,
 #email:focus,
 #password:focus,
 #name:focus,

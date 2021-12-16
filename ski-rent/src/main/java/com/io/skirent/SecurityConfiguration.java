@@ -8,7 +8,6 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
@@ -34,7 +33,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     // login:
     private static final String loginPage = "/login.jsp";
-    private static final String loginFailurePostfix = "?error=1";
+    private static final String loginFailurePostfix = "?status=error";
     private static final String loginProcessingUrl = "/login";
 
     // logout:
@@ -103,5 +102,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl(logoutSuccessfulUrl)
                 .deleteCookies("JSESSIONID")
                 .invalidateHttpSession(true);
+
+        http.csrf().disable();  // disable CSRF, used for testing POST requests, not needed (?) in final version
     }
 }
