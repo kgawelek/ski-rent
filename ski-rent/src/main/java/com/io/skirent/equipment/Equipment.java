@@ -58,6 +58,7 @@ public class Equipment {
             nullable = false,
             columnDefinition = "TEXT"
     )
+    @Enumerated(EnumType.STRING)
     private Category category;
 
     public Equipment() {
