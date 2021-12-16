@@ -321,9 +321,6 @@ h3 {
     font: 16px calibri;
     letter-spacing: -1px;
     padding: 15px 0 0;
-    -webkit-box-shadow: 0 0 2px rgb(189, 207, 231);
-    -moz-box-shadow: 0 0 2px rgb(189, 207, 231);
-    box-shadow: 0 0 2px rgb(189, 207, 231);
     opacity: 1;
 }
 
@@ -342,7 +339,10 @@ label {
 }
 
 #email,
-#password {
+#password,
+#name,
+#surname,
+#birth{
     font-size: 22px;
     display: block;
     width: 360px;
@@ -353,7 +353,10 @@ label {
 }
 
 #email:focus,
-#password:focus {
+#password:focus,
+#name:focus,
+#surname:focus,
+#birth:focus{
     outline: 5px solid #e5f2f8;
 }
 
@@ -372,7 +375,7 @@ label {
 }
 
 .input_button_submit {
-    width: 70px;
+    width: auto;
     font-family: Georgia, 'Times New Roman', Times, serif;
     padding: 5px 13px;
     border: solid rgb(189, 207, 231) 1px;
@@ -380,13 +383,7 @@ label {
     text-shadow: 0 0 1px black;
     background: rgb(189, 207, 231);
     position: relative;
-    left: 180px;
-}
-
-#panel,
-.input_button_submit {
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
+    left: 140px;
     border-radius: 5px;
 }
 
