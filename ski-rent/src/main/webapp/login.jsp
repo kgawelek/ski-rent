@@ -11,6 +11,7 @@
     <meta name="keywords" content="stronka, strona">
     <meta name="robots" content="index, follow">
     <link rel="stylesheet" href="Style-css/style.css">
+
 </head>
 
 <body>
@@ -90,6 +91,9 @@
 
             </div>
             <div id="srodkowa_czesc_zawartosci">
+
+
+
                 <div id="tekst">
                     <div id="panel">
                         <c:url value="/login" var="login"/>
@@ -99,7 +103,7 @@
                             <label for="password">Hasło:</label>
                             <input type="password" id="password" name="password">
                             <div id="lower">
-                                <input type="submit">
+                                <input class="input_button_submit" type="submit" value="Zaloguj się">
                             </div>
                         </form:form>
                     </div>
@@ -108,6 +112,7 @@
         </div>
     </div>
 </div>
+<script src="alerts.js"></script>
 </body>
 
 </html>

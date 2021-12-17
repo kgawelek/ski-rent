@@ -1,5 +1,6 @@
 package com.io.skirent.user.controllers;
 
+import com.io.skirent.user.exceptions.*;
 import com.io.skirent.user.models.ClientDTO;
 import com.io.skirent.user.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.web.server.ResponseStatusException;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.io.IOException;
+import java.time.format.DateTimeParseException;
 
 
 @RestController
@@ -25,11 +27,23 @@ public class UserController {
 
     @PostMapping("/register")
     public void addNewUser(ClientDTO clientDTO, HttpServletResponse httpResponse) {
-        try{
-            userService.addNewClient(clientDTO);
-            httpResponse.sendRedirect("/login.jsp");
-        } catch (IllegalArgumentException e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+        try {
+            try {
+                userService.addNewClient(clientDTO);
+                httpResponse.sendRedirect("/login.jsp?login=prompt");
+            } catch (InvalidNameException e) {
+                httpResponse.sendRedirect("/registration.html?registration=failure&reason=invalidName");
+            } catch (InvalidSurnameException e) {
+                httpResponse.sendRedirect("/registration.html?registration=failure&reason=invalidSurname");
+            } catch (DateTimeParseException | InvalidDateException e) {
+                httpResponse.sendRedirect("/registration.html?registration=failure&reason=invalidDate");
+            } catch (InvalidEmailException e) {
+                httpResponse.sendRedirect("/registration.html?registration=failure&reason=invalidEmail");
+            } catch (EmailTakenException e) {
+                httpResponse.sendRedirect("/registration.html?registration=failure&reason=emailTaken");
+            } catch (InvalidPasswordException e) {
+                httpResponse.sendRedirect("/registration.html?registration=failure&reason=invalidPassword");
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

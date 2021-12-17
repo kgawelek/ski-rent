@@ -33,7 +33,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     // login:
     private static final String loginPage = "/login.jsp";
-    private static final String loginFailurePostfix = "?status=error";
+    private static final String accessDenied = "?forbidden=true";
+    private static final String loginFailurePostfix = "?login=error";
     private static final String loginProcessingUrl = "/login";
 
     // logout:
@@ -92,7 +93,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers(apiUserUri).hasAnyRole(adminRole, employeeRole, clientRole)
                 .anyRequest().permitAll()
                 .and()
-                .formLogin().loginPage(loginPage)
+                .formLogin().loginPage(loginPage + accessDenied)
                 .failureUrl(loginPage + loginFailurePostfix)
                 .loginProcessingUrl(loginProcessingUrl)
                 .permitAll()
