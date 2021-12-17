@@ -10,7 +10,8 @@ import javax.persistence.*;
                 @UniqueConstraint(name = "user_email", columnNames = "email")
         }
 )
-abstract class Account {
+@Inheritance(strategy=InheritanceType.JOINED)
+public class Account {
     @Id
     @SequenceGenerator(
             name = "account_sequence",
@@ -22,7 +23,7 @@ abstract class Account {
             generator = "account_sequence"
     )
     @Column(
-            name = "id",
+            name = "user_id",
             nullable = false
     )
     Long id; // package-private
@@ -42,6 +43,14 @@ abstract class Account {
     )
     String password; // package-private
 
+    public Account() {
+    }
+
+    public Account(Long id, String email, String password) {
+        this.id = id;
+        this.email = email;
+        this.password = password;
+    }
 
     public Long getId() {
         return id;
