@@ -1,7 +1,13 @@
 const urlParams = new URLSearchParams(window.location.search);
 urlParams.forEach((value, key) => console.debug("param:", key, " -> ", value));
 
-if (urlParams.get('login') === 'error') {
+if(window.location.pathname === '/' && document.referrer === window.location.protocol + '//' + window.location.host + '/login.jsp')
+    createAlert(`
+        <div class="alert success">
+            <span class="closebtn">&times;</span>
+            <strong>Pomyślnie zalogowano</strong>
+        </div>`);
+else if (urlParams.get('login') === 'error') {
     createAlert(`
         <div class="alert warning">
             <span class="closebtn">&times;</span>
