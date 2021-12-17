@@ -6,6 +6,7 @@ import com.io.skirent.equipment.repositories.EquipmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,6 +43,9 @@ public class EquipmentService {
 
     public void addNewEquipment(Equipment equipment) {
         // TODO decide what validation is needed
+        LocalDate today = LocalDate.now();
+        if(equipment.getNextCheckUp().isBefore(today))
+            throw new IllegalArgumentException("Next checkup date cannot be in the past");
         equipmentRepository.save(equipment);
     }
 
