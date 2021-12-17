@@ -60,11 +60,11 @@ a:hover {
 
 #contact_box {
     position: absolute;
-    right: 40px;
-    top: 20px;
+    right: 60px;
+    top: 10px;
     font-family: Georgia, 'Times New Roman', Times, serif;
     line-height: 135%;
-    font-size: 15px;
+    font-size: 13px;
     text-align: left;
 }
 
@@ -304,7 +304,6 @@ h3 {
 
 .dolna_czesc_strony {
     margin: 10px;
-    background-image: url(../images/kontener_gora_i_dol.png);
     width: 939px;
     height: 175px;
 }
@@ -387,24 +386,27 @@ label {
     border-radius: 5px;
 }
 
-.table{
+#tekst table{
     width: 100%;
     border-collapse: collapse;
     border-spacing: 0;
     margin-bottom: 1%;
+    border: 1px solid grey
 }
-.table td,th {
+#tekst table td,th {
     font-size: 14px;
-    border-top: 1px solid #ddd;
+    /*border-top: 1px solid #ddd;*/
     padding: 5px 12px;
     text-align: left;
     vertical-align: top;
+    width: 100px;
 }
 
-.table tbody tr:nth-child(even) td {
+#tekst table tbody tr:nth-child(even) td {
     background-color: #f3f3f3;
 }
 
-.table thead tr{
+#tekst table thead tr{
     background-color: #80c4ff;
 }
+
