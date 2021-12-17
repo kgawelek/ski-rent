@@ -24,8 +24,9 @@ body {
     position: relative;
     margin: 10px;
     background-image: url(../images/containerTop.jpg);
+    background-size: cover;
     background-color: rgb(223, 233, 247);
-    width: 939px;
+    width: 100%;
     height: 175px;
 }
 
@@ -101,7 +102,7 @@ a:hover {
 
 #srodkowe_menu {
     background-color: rgb(223, 233, 247);
-    width: 939px;
+    width: 100%;
     height: 30px;
     margin: 10px;
     border-top: solid rgb(122, 138, 182) 2px;
@@ -208,13 +209,13 @@ a:hover {
 /* tresc */
 
 #zawartosc {
-    width: 939px;
+    width: 100%;
 }
 
 #gorna_czesc_zawartosci {
     background-color: rgb(223, 233, 247);
-    width: 939px;
-    height: 10px;
+    width: 100%;
+    min-height: 10px;
     margin: 10px;
     border-bottom: 2px solid black;
     border-top: 2px solid black;
@@ -222,13 +223,13 @@ a:hover {
 
 #srodkowa_czesc_zawartosci {
     background-color: rgb(223, 233, 247);
-    width: 939px;
+    width: 100%;
     margin: 10px;
 }
 
 #dolna_czesc_zawartosci {
     background-color: rgb(223, 233, 247);
-    width: 939px;
+    width: 100%;
     height: 10px;
     margin: 10px;
     border-top: 2px solid black;
@@ -304,7 +305,7 @@ h3 {
 
 .dolna_czesc_strony {
     margin: 10px;
-    width: 939px;
+    width: 100%;
     height: 175px;
 }
 
@@ -337,6 +338,7 @@ label {
     text-shadow: 0 0 1px rgb(29, 55, 88);
 }
 
+#username,
 #email,
 #password,
 #name,
@@ -351,6 +353,7 @@ label {
     outline: 5px solid rgb(213, 228, 247);
 }
 
+#username:focus,
 #email:focus,
 #password:focus,
 #name:focus,
@@ -410,3 +413,32 @@ label {
     background-color: #80c4ff;
 }
 
+/* The alert message box */
+.alert {
+    padding: 20px;
+    background-color: #f44336; /* Red */
+    color: white;
+    margin-bottom: 15px;
+    opacity: 1;
+    transition: opacity 0.6s; /* 600ms to fade out */
+}
+.alert.success {background-color: #04AA6D;}
+.alert.info {background-color: #2196F3;}
+.alert.warning {background-color: #ff9800;}
+
+/* The close button */
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+    color: black;
+}
