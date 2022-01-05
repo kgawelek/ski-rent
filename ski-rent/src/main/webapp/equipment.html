@@ -101,159 +101,159 @@
 <script>
     $(document).ready(function(){
         $.getJSON("http://localhost:8080/api/equipment/gear", function(data){
-            var employee_data = '';
+            var equipment_data = '';
             console.log(data);
             data = data.sort((firstEl, secondEl) => firstEl.category < secondEl.category );
 
-            employee_data += '<a name="ski_poles"></a>';
-            employee_data += '<h3>KIJKI NARCIARSKIE</h3>';
+            equipment_data += '<a name="ski_poles"></a>';
+            equipment_data += '<br><br><h3>KIJKI NARCIARSKIE</h3>';
             $.each(data, function(key, value){
                 if(value.category=='SKI_POLES') {
-                    employee_data += '<table>';
-                    employee_data += '<tr>';
-                    employee_data += '<td>Nazwa</td>';
-                    employee_data += '<td>' + value.name + '</td>';
-                    employee_data += '</tr>';
-                    employee_data += '<tr>';
-                    employee_data += '<td>Producent</td>';
-                    employee_data += '<td>' + value.category + '</td>';
-                    employee_data += '</tr>';
-                    employee_data += '<tr>';
-                    employee_data += '<td>Rozmiar</td>';
-                    employee_data += '<td>' + value.size + '</td>';
-                    employee_data += '</tr>';
-                    employee_data += '</table>';
+                    equipment_data += '<table>';
+                    equipment_data += '<tr>';
+                    equipment_data += '<td>Nazwa</td>';
+                    equipment_data += '<td>' + value.name + '</td>';
+                    equipment_data += '</tr>';
+                    equipment_data += '<tr>';
+                    equipment_data += '<td>Producent</td>';
+                    equipment_data += '<td>' + value.category + '</td>';
+                    equipment_data += '</tr>';
+                    equipment_data += '<tr>';
+                    equipment_data += '<td>Rozmiar</td>';
+                    equipment_data += '<td>' + value.size + '</td>';
+                    equipment_data += '</tr>';
+                    equipment_data += '</table>';
                 }
             });
 
 
-            employee_data += '<a name="ski"></a>';
-            employee_data += '<h3>NARTY</h3>';
+            equipment_data += '<a name="ski"></a>';
+            equipment_data += '<br><br><h3>NARTY</h3>';
             $.each(data, function(key, value){
                 if(value.category=='SKI') {
-                    employee_data += '<table>';
-                    employee_data += '<tr>';
-                    employee_data += '<td>Nazwa</td>';
-                    employee_data += '<td>' + value.name + '</td>';
-                    employee_data += '</tr>';
-                    employee_data += '<tr>';
-                    employee_data += '<td>Producent</td>';
-                    employee_data += '<td>' + value.category + '</td>';
-                    employee_data += '</tr>';
-                    employee_data += '<tr>';
-                    employee_data += '<td>Rozmiar</td>';
-                    employee_data += '<td>' + value.size + '</td>';
-                    employee_data += '</tr>';
-                    employee_data += '</table>';
+                    equipment_data += '<table>';
+                    equipment_data += '<tr>';
+                    equipment_data += '<td>Nazwa</td>';
+                    equipment_data += '<td>' + value.name + '</td>';
+                    equipment_data += '</tr>';
+                    equipment_data += '<tr>';
+                    equipment_data += '<td>Producent</td>';
+                    equipment_data += '<td>' + value.manufacturer + '</td>';
+                    equipment_data += '</tr>';
+                    equipment_data += '<tr>';
+                    equipment_data += '<td>Rozmiar</td>';
+                    equipment_data += '<td>' + value.size + '</td>';
+                    equipment_data += '</tr>';
+                    equipment_data += '</table>';
                 }
             });
-            employee_data += '<a name="snowboard"></a>';
-            employee_data += '<h3>DESKI SNOWBOARDOWE</h3>';
+            equipment_data += '<a name="snowboard"></a>';
+            equipment_data += '<br><br><h3>DESKI SNOWBOARDOWE</h3>';
             $.each(data, function(key, value){
                 if(value.category=='SNOWBOARD') {
-                    employee_data += '<table>';
-                    employee_data += '<tr>';
-                    employee_data += '<td>Nazwa</td>';
-                    employee_data += '<td>' + value.name + '</td>';
-                    employee_data += '</tr>';
-                    employee_data += '<tr>';
-                    employee_data += '<td>Producent</td>';
-                    employee_data += '<td>' + value.category + '</td>';
-                    employee_data += '</tr>';
-                    employee_data += '<tr>';
-                    employee_data += '<td>Rozmiar</td>';
-                    employee_data += '<td>' + value.size + '</td>';
-                    employee_data += '</tr>';
-                    employee_data += '</table>';
+                    equipment_data += '<table>';
+                    equipment_data += '<tr>';
+                    equipment_data += '<td>Nazwa</td>';
+                    equipment_data += '<td>' + value.name + '</td>';
+                    equipment_data += '</tr>';
+                    equipment_data += '<tr>';
+                    equipment_data += '<td>Producent</td>';
+                    equipment_data += '<td>' + value.manufacturer + '</td>';
+                    equipment_data += '</tr>';
+                    equipment_data += '<tr>';
+                    equipment_data += '<td>Rozmiar</td>';
+                    equipment_data += '<td>' + value.size + '</td>';
+                    equipment_data += '</tr>';
+                    equipment_data += '</table>';
                 }
             });
 
-            employee_data += '<a name="goggles"></a>';
-            employee_data += '<h3>GOGLE</h3>';
+            equipment_data += '<a name="goggles"></a>';
+            equipment_data += '<br><br><h3>GOGLE</h3>';
             $.each(data, function(key, value){
                 if(value.category=='GOGGLES') {
-                    employee_data += '<table>';
-                    employee_data += '<tr>';
-                    employee_data += '<td>Nazwa</td>';
-                    employee_data += '<td>' + value.name + '</td>';
-                    employee_data += '</tr>';
-                    employee_data += '<tr>';
-                    employee_data += '<td>Producent</td>';
-                    employee_data += '<td>' + value.category + '</td>';
-                    employee_data += '</tr>';
-                    employee_data += '<tr>';
-                    employee_data += '<td>Rozmiar</td>';
-                    employee_data += '<td>' + value.size + '</td>';
-                    employee_data += '</tr>';
-                    employee_data += '</table>';
+                    equipment_data += '<table>';
+                    equipment_data += '<tr>';
+                    equipment_data += '<td>Nazwa</td>';
+                    equipment_data += '<td>' + value.name + '</td>';
+                    equipment_data += '</tr>';
+                    equipment_data += '<tr>';
+                    equipment_data += '<td>Producent</td>';
+                    equipment_data += '<td>' + value.manufacturer + '</td>';
+                    equipment_data += '</tr>';
+                    equipment_data += '<tr>';
+                    equipment_data += '<td>Rozmiar</td>';
+                    equipment_data += '<td>' + value.size + '</td>';
+                    equipment_data += '</tr>';
+                    equipment_data += '</table>';
                 }
             });
 
 
-            employee_data += '<a name="ski_boots"></a>';
-            employee_data += '<h3>BUTY NARCIARSKIE</h3>';
+            equipment_data += '<a name="ski_boots"></a>';
+            equipment_data += '<br><br><h3>BUTY NARCIARSKIE</h3>';
             $.each(data, function(key, value){
                 if(value.category=='SKI_BOOTS') {
-                    employee_data += '<table>';
-                    employee_data += '<tr>';
-                    employee_data += '<td>Nazwa</td>';
-                    employee_data += '<td>' + value.name + '</td>';
-                    employee_data += '</tr>';
-                    employee_data += '<tr>';
-                    employee_data += '<td>Producent</td>';
-                    employee_data += '<td>' + value.category + '</td>';
-                    employee_data += '</tr>';
-                    employee_data += '<tr>';
-                    employee_data += '<td>Rozmiar</td>';
-                    employee_data += '<td>' + value.size + '</td>';
-                    employee_data += '</tr>';
-                    employee_data += '</table>';
+                    equipment_data += '<table>';
+                    equipment_data += '<tr>';
+                    equipment_data += '<td>Nazwa</td>';
+                    equipment_data += '<td>' + value.name + '</td>';
+                    equipment_data += '</tr>';
+                    equipment_data += '<tr>';
+                    equipment_data += '<td>Producent</td>';
+                    equipment_data += '<td>' + value.manufacturer + '</td>';
+                    equipment_data += '</tr>';
+                    equipment_data += '<tr>';
+                    equipment_data += '<td>Rozmiar</td>';
+                    equipment_data += '<td>' + value.size + '</td>';
+                    equipment_data += '</tr>';
+                    equipment_data += '</table>';
                 }
             });
 
-            employee_data += '<a name="snowboard_boots"></a>';
-            employee_data += '<h3>BUTY SNOWBOARDOWE</h3>';
+            equipment_data += '<a name="snowboard_boots"></a>';
+            equipment_data += '<br><br><h3>BUTY SNOWBOARDOWE</h3>';
             $.each(data, function(key, value){
                 if(value.category=='SNOWBOARDS_BOOTS') {
-                    employee_data += '<table>';
-                    employee_data += '<tr>';
-                    employee_data += '<td>Nazwa</td>';
-                    employee_data += '<td>' + value.name + '</td>';
-                    employee_data += '</tr>';
-                    employee_data += '<tr>';
-                    employee_data += '<td>Producent</td>';
-                    employee_data += '<td>' + value.category + '</td>';
-                    employee_data += '</tr>';
-                    employee_data += '<tr>';
-                    employee_data += '<td>Rozmiar</td>';
-                    employee_data += '<td>' + value.size + '</td>';
-                    employee_data += '</tr>';
-                    employee_data += '</table>';
+                    equipment_data += '<table>';
+                    equipment_data += '<tr>';
+                    equipment_data += '<td>Nazwa</td>';
+                    equipment_data += '<td>' + value.name + '</td>';
+                    equipment_data += '</tr>';
+                    equipment_data += '<tr>';
+                    equipment_data += '<td>Producent</td>';
+                    equipment_data += '<td>' + value.manufacturer + '</td>';
+                    equipment_data += '</tr>';
+                    equipment_data += '<tr>';
+                    equipment_data += '<td>Rozmiar</td>';
+                    equipment_data += '<td>' + value.size + '</td>';
+                    equipment_data += '</tr>';
+                    equipment_data += '</table>';
                 }
             });
 
-            employee_data += '<a name="helmet"></a>';
-            employee_data += '<h3>KASKI</h3>';
+            equipment_data += '<a name="helmet"></a>';
+            equipment_data += '<br><br><h3>KASKI</h3>';
             $.each(data, function(key, value){
                 if(value.category=='HELMET') {
-                    employee_data += '<table>';
-                    employee_data += '<tr>';
-                    employee_data += '<td>Nazwa</td>';
-                    employee_data += '<td>' + value.name + '</td>';
-                    employee_data += '</tr>';
-                    employee_data += '<tr>';
-                    employee_data += '<td>Producent</td>';
-                    employee_data += '<td>' + value.category + '</td>';
-                    employee_data += '</tr>';
-                    employee_data += '<tr>';
-                    employee_data += '<td>Rozmiar</td>';
-                    employee_data += '<td>' + value.size + '</td>';
-                    employee_data += '</tr>';
-                    employee_data += '</table>';
+                    equipment_data += '<table>';
+                    equipment_data += '<tr>';
+                    equipment_data += '<td>Nazwa</td>';
+                    equipment_data += '<td>' + value.name + '</td>';
+                    equipment_data += '</tr>';
+                    equipment_data += '<tr>';
+                    equipment_data += '<td>Producent</td>';
+                    equipment_data += '<td>' + value.manufacturer + '</td>';
+                    equipment_data += '</tr>';
+                    equipment_data += '<tr>';
+                    equipment_data += '<td>Rozmiar</td>';
+                    equipment_data += '<td>' + value.size + '</td>';
+                    equipment_data += '</tr>';
+                    equipment_data += '</table>';
                 }
             });
-
-            $('#employee_table').append(employee_data);
+            equipment_data += '<br><br><br>';
+            $('#employee_table').append(equipment_data);
         });
 
     });

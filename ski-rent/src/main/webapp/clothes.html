@@ -89,7 +89,7 @@
             </div>
             <div id="srodkowa_czesc_zawartosci">
                 <div id="tekst">
-<div id="employee_table">
+<div id="clothes_table">
     <h2>ODZIEŻ NARCIARSKA</h2>
 </div>
 
@@ -105,159 +105,159 @@
 <script>
     $(document).ready(function(){
         $.getJSON("http://localhost:8080/api/equipment/clothes", function(data){
-            var employee_data = '';
+            var clothes_data = '';
             console.log(data);
             data = data.sort((firstEl, secondEl) => firstEl.category < secondEl.category );
 
-            employee_data += '<a name="pants"></a>';
-            employee_data += '<h3>SPODNIE</h3>';
+            clothes_data += '<a name="pants"></a>';
+            clothes_data += '<br><br><h3>SPODNIE</h3>';
             $.each(data, function(key, value){
                 if(value.category=='PANTS') {
-                    employee_data += '<table>';
-                    employee_data += '<tr>';
-                    employee_data += '<td>Nazwa</td>';
-                    employee_data += '<td>' + value.name + '</td>';
-                    employee_data += '</tr>';
-                    employee_data += '<tr>';
-                    employee_data += '<td>Producent</td>';
-                    employee_data += '<td>' + value.category + '</td>';
-                    employee_data += '</tr>';
-                    employee_data += '<tr>';
-                    employee_data += '<td>Rozmiar</td>';
-                    employee_data += '<td>' + value.size + '</td>';
-                    employee_data += '</tr>';
-                    employee_data += '</table>';
+                    clothes_data += '<table>';
+                    clothes_data += '<tr>';
+                    clothes_data += '<td>Nazwa</td>';
+                    clothes_data += '<td>' + value.name + '</td>';
+                    clothes_data += '</tr>';
+                    clothes_data += '<tr>';
+                    clothes_data += '<td>Producent</td>';
+                    clothes_data += '<td>' + value.manufacturer + '</td>';
+                    clothes_data += '</tr>';
+                    clothes_data += '<tr>';
+                    clothes_data += '<td>Rozmiar</td>';
+                    clothes_data += '<td>' + value.size + '</td>';
+                    clothes_data += '</tr>';
+                    clothes_data += '</table>';
                 }
             });
 
 
-            employee_data += '<a name="jackets"></a>';
-            employee_data += '<h3>KURTKI</h3>';
+            clothes_data += '<a name="jackets"></a>';
+            clothes_data += '<br><br><h3>KURTKI</h3>';
             $.each(data, function(key, value){
                 if(value.category=='JACKET') {
-                    employee_data += '<table>';
-                    employee_data += '<tr>';
-                    employee_data += '<td>Nazwa</td>';
-                    employee_data += '<td>' + value.name + '</td>';
-                    employee_data += '</tr>';
-                    employee_data += '<tr>';
-                    employee_data += '<td>Producent</td>';
-                    employee_data += '<td>' + value.category + '</td>';
-                    employee_data += '</tr>';
-                    employee_data += '<tr>';
-                    employee_data += '<td>Rozmiar</td>';
-                    employee_data += '<td>' + value.size + '</td>';
-                    employee_data += '</tr>';
-                    employee_data += '</table>';
+                    clothes_data += '<table>';
+                    clothes_data += '<tr>';
+                    clothes_data += '<td>Nazwa</td>';
+                    clothes_data += '<td>' + value.name + '</td>';
+                    clothes_data += '</tr>';
+                    clothes_data += '<tr>';
+                    clothes_data += '<td>Producent</td>';
+                    clothes_data += '<td>' + value.manufacturer + '</td>';
+                    clothes_data += '</tr>';
+                    clothes_data += '<tr>';
+                    clothes_data += '<td>Rozmiar</td>';
+                    clothes_data += '<td>' + value.size + '</td>';
+                    clothes_data += '</tr>';
+                    clothes_data += '</table>';
                 }
             });
-            employee_data += '<a name="gloves"></a>';
-            employee_data += '<h3>RĘKAWICE</h3>';
+            clothes_data += '<a name="gloves"></a>';
+            clothes_data += '<br><br><h3>RĘKAWICE</h3>';
             $.each(data, function(key, value){
                 if(value.category=='GLOVES') {
-                    employee_data += '<table>';
-                    employee_data += '<tr>';
-                    employee_data += '<td>Nazwa</td>';
-                    employee_data += '<td>' + value.name + '</td>';
-                    employee_data += '</tr>';
-                    employee_data += '<tr>';
-                    employee_data += '<td>Producent</td>';
-                    employee_data += '<td>' + value.category + '</td>';
-                    employee_data += '</tr>';
-                    employee_data += '<tr>';
-                    employee_data += '<td>Rozmiar</td>';
-                    employee_data += '<td>' + value.size + '</td>';
-                    employee_data += '</tr>';
-                    employee_data += '</table>';
+                    clothes_data += '<table>';
+                    clothes_data += '<tr>';
+                    clothes_data += '<td>Nazwa</td>';
+                    clothes_data += '<td>' + value.name + '</td>';
+                    clothes_data += '</tr>';
+                    clothes_data += '<tr>';
+                    clothes_data += '<td>Producent</td>';
+                    clothes_data += '<td>' + value.manufacturer + '</td>';
+                    clothes_data += '</tr>';
+                    clothes_data += '<tr>';
+                    clothes_data += '<td>Rozmiar</td>';
+                    clothes_data += '<td>' + value.size + '</td>';
+                    clothes_data += '</tr>';
+                    clothes_data += '</table>';
                 }
             });
 
-            employee_data += '<a name="balaclavas"></a>';
-            employee_data += '<h3>KOMINIARKI</h3>';
+            clothes_data += '<a name="balaclavas"></a>';
+            clothes_data += '<br><br><h3>KOMINIARKI</h3>';
             $.each(data, function(key, value){
                 if(value.category=='BALACLAVAS') {
-                    employee_data += '<table>';
-                    employee_data += '<tr>';
-                    employee_data += '<td>Nazwa</td>';
-                    employee_data += '<td>' + value.name + '</td>';
-                    employee_data += '</tr>';
-                    employee_data += '<tr>';
-                    employee_data += '<td>Producent</td>';
-                    employee_data += '<td>' + value.category + '</td>';
-                    employee_data += '</tr>';
-                    employee_data += '<tr>';
-                    employee_data += '<td>Rozmiar</td>';
-                    employee_data += '<td>' + value.size + '</td>';
-                    employee_data += '</tr>';
-                    employee_data += '</table>';
+                    clothes_data += '<table>';
+                    clothes_data += '<tr>';
+                    clothes_data += '<td>Nazwa</td>';
+                    clothes_data += '<td>' + value.name + '</td>';
+                    clothes_data += '</tr>';
+                    clothes_data += '<tr>';
+                    clothes_data += '<td>Producent</td>';
+                    clothes_data += '<td>' + value.manufacturer + '</td>';
+                    clothes_data += '</tr>';
+                    clothes_data += '<tr>';
+                    clothes_data += '<td>Rozmiar</td>';
+                    clothes_data += '<td>' + value.size + '</td>';
+                    clothes_data += '</tr>';
+                    clothes_data += '</table>';
                 }
             });
 
 
-            employee_data += '<a name="caps"></a>';
-            employee_data += '<h3>CZAPKI</h3>';
+            clothes_data += '<a name="caps"></a>';
+            clothes_data += '<br><br><h3>CZAPKI</h3>';
             $.each(data, function(key, value){
                 if(value.category=='CAP') {
-                    employee_data += '<table>';
-                    employee_data += '<tr>';
-                    employee_data += '<td>Nazwa</td>';
-                    employee_data += '<td>' + value.name + '</td>';
-                    employee_data += '</tr>';
-                    employee_data += '<tr>';
-                    employee_data += '<td>Producent</td>';
-                    employee_data += '<td>' + value.category + '</td>';
-                    employee_data += '</tr>';
-                    employee_data += '<tr>';
-                    employee_data += '<td>Rozmiar</td>';
-                    employee_data += '<td>' + value.size + '</td>';
-                    employee_data += '</tr>';
-                    employee_data += '</table>';
+                    clothes_data += '<table>';
+                    clothes_data += '<tr>';
+                    clothes_data += '<td>Nazwa</td>';
+                    clothes_data += '<td>' + value.name + '</td>';
+                    clothes_data += '</tr>';
+                    clothes_data += '<tr>';
+                    clothes_data += '<td>Producent</td>';
+                    clothes_data += '<td>' + value.manufacturer + '</td>';
+                    clothes_data += '</tr>';
+                    clothes_data += '<tr>';
+                    clothes_data += '<td>Rozmiar</td>';
+                    clothes_data += '<td>' + value.size + '</td>';
+                    clothes_data += '</tr>';
+                    clothes_data += '</table>';
                 }
             });
 
-            employee_data += '<a name="scarves"></a>';
-            employee_data += '<h3>SZALIKI</h3>';
+            clothes_data += '<a name="scarves"></a>';
+            clothes_data += '<br><br><h3>SZALIKI</h3>';
             $.each(data, function(key, value){
                 if(value.category=='SCARF') {
-                    employee_data += '<table>';
-                    employee_data += '<tr>';
-                    employee_data += '<td>Nazwa</td>';
-                    employee_data += '<td>' + value.name + '</td>';
-                    employee_data += '</tr>';
-                    employee_data += '<tr>';
-                    employee_data += '<td>Producent</td>';
-                    employee_data += '<td>' + value.category + '</td>';
-                    employee_data += '</tr>';
-                    employee_data += '<tr>';
-                    employee_data += '<td>Rozmiar</td>';
-                    employee_data += '<td>' + value.size + '</td>';
-                    employee_data += '</tr>';
-                    employee_data += '</table>';
+                    clothes_data += '<table>';
+                    clothes_data += '<tr>';
+                    clothes_data += '<td>Nazwa</td>';
+                    clothes_data += '<td>' + value.name + '</td>';
+                    clothes_data += '</tr>';
+                    clothes_data += '<tr>';
+                    clothes_data += '<td>Producent</td>';
+                    clothes_data += '<td>' + value.manufacturer + '</td>';
+                    clothes_data += '</tr>';
+                    clothes_data += '<tr>';
+                    clothes_data += '<td>Rozmiar</td>';
+                    clothes_data += '<td>' + value.size + '</td>';
+                    clothes_data += '</tr>';
+                    clothes_data += '</table>';
                 }
             });
 
-            employee_data += '<a name="helmet"></a>';
-            employee_data += '<h3>KASKI</h3>';
+            clothes_data += '<a name="helmet"></a>';
+            clothes_data += '<br><br><h3>KASKI</h3>';
             $.each(data, function(key, value){
                 if(value.category=='HELMET') {
-                    employee_data += '<table>';
-                    employee_data += '<tr>';
-                    employee_data += '<td>Nazwa</td>';
-                    employee_data += '<td>' + value.name + '</td>';
-                    employee_data += '</tr>';
-                    employee_data += '<tr>';
-                    employee_data += '<td>Producent</td>';
-                    employee_data += '<td>' + value.category + '</td>';
-                    employee_data += '</tr>';
-                    employee_data += '<tr>';
-                    employee_data += '<td>Rozmiar</td>';
-                    employee_data += '<td>' + value.size + '</td>';
-                    employee_data += '</tr>';
-                    employee_data += '</table>';
+                    clothes_data += '<table>';
+                    clothes_data += '<tr>';
+                    clothes_data += '<td>Nazwa</td>';
+                    clothes_data += '<td>' + value.name + '</td>';
+                    clothes_data += '</tr>';
+                    clothes_data += '<tr>';
+                    clothes_data += '<td>Producent</td>';
+                    clothes_data += '<td>' + value.manufacturer + '</td>';
+                    clothes_data += '</tr>';
+                    clothes_data += '<tr>';
+                    clothes_data += '<td>Rozmiar</td>';
+                    clothes_data += '<td>' + value.size + '</td>';
+                    clothes_data += '</tr>';
+                    clothes_data += '</table>';
                 }
             });
-
-            $('#employee_table').append(employee_data);
+            clothes_data += '<br><br><br>';
+            $('#clothes_table').append(clothes_data);
         });
 
     });

@@ -19,7 +19,7 @@ public interface EquipmentRepository extends JpaRepository<Equipment, Long> {
     @Query("SELECT e FROM Equipment e WHERE e.category IN ('SKI', 'SNOWBOARD', 'SKI_POLES', 'SKI_BOOTS', 'SNOWBOARD_BOOTS', 'HELMET')")
     List<Equipment> findGearEquipment();
 
-    @Query("SELECT e FROM Equipment e WHERE e.category IN ('JACKET', 'PANTS', 'CAP', 'SCARF', 'GLOVES', 'GOGGLES')")
+    @Query("SELECT e FROM Equipment e WHERE e.category IN ('JACKET', 'PANTS', 'CAP', 'SCARF', 'GLOVES', 'GOGGLES', 'BALACLAVAS')")
     List<Equipment> findClothesEquipment();
 
     @Query(value = "SELECT e FROM Equipment e " +

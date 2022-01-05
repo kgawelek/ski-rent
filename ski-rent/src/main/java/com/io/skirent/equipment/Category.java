@@ -8,6 +8,7 @@ public enum Category {
     SNOWBOARD_BOOTS,
     HELMET,
     JACKET,
+    BALACLAVAS,
     PANTS,
     CAP,
     SCARF,
