@@ -34,6 +34,14 @@ public class EquipmentService {
         return equipmentRepository.findById(equipmentId);
     }
 
+    public List<Equipment> getGearEquipment() {
+        return equipmentRepository.findGearEquipment();
+    }
+
+    public List<Equipment> getClothesEquipment() {
+        return equipmentRepository.findClothesEquipment();
+    }
+
     public Optional<Equipment> getEquipmentByCategory(String category) {
         for(Category cat: Category.values()){
             if(cat.toString().equals(category))

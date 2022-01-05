@@ -25,6 +25,16 @@ public class EquipmentController {
         return equipmentService.getAllEquipment();
     }
 
+    @GetMapping(path = "/gear")
+    public List<Equipment> getGearEquipment(){
+        return equipmentService.getGearEquipment();
+    }
+
+    @GetMapping(path = "/clothes")
+    public List<Equipment> getClothesEquipment() {
+        return equipmentService.getClothesEquipment();
+    }
+
     @GetMapping(path = "{equipmentId}")
     public Optional<Equipment> getEquipmentById(@PathVariable("equipmentId") Long equipmentId){
         return equipmentService.getEquipmentById(equipmentId);

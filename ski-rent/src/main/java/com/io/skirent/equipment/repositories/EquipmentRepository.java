@@ -16,6 +16,11 @@ public interface EquipmentRepository extends JpaRepository<Equipment, Long> {
     @Query("SELECT e FROM Equipment e WHERE e.category = ?1")
     Optional<Equipment> findEquipmentByCategory(String category);
 
+    @Query("SELECT e FROM Equipment e WHERE e.category IN ('SKI', 'SNOWBOARD', 'SKI_POLES', 'SKI_BOOTS', 'SNOWBOARD_BOOTS', 'HELMET')")
+    List<Equipment> findGearEquipment();
+
+    @Query("SELECT e FROM Equipment e WHERE e.category IN ('JACKET', 'PANTS', 'CAP', 'SCARF', 'GLOVES', 'GOGGLES')")
+    List<Equipment> findClothesEquipment();
 
     @Query(value = "SELECT e FROM Equipment e " +
                     "WHERE e.name IN :names " +
@@ -31,3 +36,4 @@ public interface EquipmentRepository extends JpaRepository<Equipment, Long> {
 
 
 }
+
