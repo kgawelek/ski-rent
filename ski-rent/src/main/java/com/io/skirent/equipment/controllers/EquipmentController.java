@@ -1,6 +1,7 @@
 package com.io.skirent.equipment.controllers;
 
 import com.io.skirent.equipment.Equipment;
+import com.io.skirent.equipment.EquipmentFilters;
 import com.io.skirent.equipment.services.EquipmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -24,14 +25,30 @@ public class EquipmentController {
         return equipmentService.getAllEquipment();
     }
 
+    @GetMapping(path = "/gear")
+    public List<Equipment> getGearEquipment(){
+        return equipmentService.getGearEquipment();
+    }
+
+    @GetMapping(path = "/clothes")
+    public List<Equipment> getClothesEquipment() {
+        return equipmentService.getClothesEquipment();
+    }
+
     @GetMapping(path = "{equipmentId}")
     public Optional<Equipment> getEquipmentById(@PathVariable("equipmentId") Long equipmentId){
         return equipmentService.getEquipmentById(equipmentId);
     }
 
     @GetMapping(path = "/category/{category}")
-    public Optional<Equipment> getEquipmentByCategories(@PathVariable("category") String category){
-            return equipmentService.getEquipmentByCategory(category);
+    public Optional<Equipment> getEquipmentByCategory(@PathVariable("category") String category){
+        return equipmentService.getEquipmentByCategory(category);
+        // TODO to chyba powinno zwracac List<Equipment> wszystkich, ktore sa z tej kategorii
+    }
+
+    @PostMapping(path = "/filter")
+    public List<Equipment> getEquipmentWithFiltering(@RequestBody EquipmentFilters equipmentFilters) {
+        return equipmentService.getEquipmentWithFiltering(equipmentFilters);
     }
 
     @PostMapping
