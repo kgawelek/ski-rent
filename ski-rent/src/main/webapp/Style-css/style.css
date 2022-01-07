@@ -34,6 +34,16 @@ body {
     text-align: center;
 }
 
+div.right {
+    position: absolute;
+    right: 0;
+    width: 16%;
+    top: 29%;
+    background-color: rgb(223, 233, 247);
+    opacity: 0.95;
+    padding: 10px;
+}
+
 img.logo {
     position: absolute;
     border: 0;
@@ -394,6 +404,7 @@ label {
 }
 
 #tekst table{
+    table-layout: auto;
     width: 100%;
     border-collapse: collapse;
     border-spacing: 0;
@@ -403,7 +414,7 @@ label {
 #tekst table td,th {
     font-size: 14px;
     /*border-top: 1px solid #ddd;*/
-    padding: 5px 12px;
+    padding: 7px 12px;
     text-align: left;
     vertical-align: top;
     width: 100px;

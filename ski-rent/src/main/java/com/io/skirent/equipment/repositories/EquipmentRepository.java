@@ -14,7 +14,7 @@ import java.util.Optional;
 public interface EquipmentRepository extends JpaRepository<Equipment, Long> {
 
     @Query("SELECT e FROM Equipment e WHERE e.category = ?1")
-    Optional<Equipment> findEquipmentByCategory(String category);
+    List<Equipment> findEquipmentByCategory(String category);
 
     @Query("SELECT e FROM Equipment e WHERE e.category IN ('SKI', 'SNOWBOARD', 'SKI_POLES', 'SKI_BOOTS', 'SNOWBOARD_BOOTS', 'HELMET')")
     List<Equipment> findGearEquipment();
@@ -22,15 +22,15 @@ public interface EquipmentRepository extends JpaRepository<Equipment, Long> {
     @Query("SELECT e FROM Equipment e WHERE e.category IN ('JACKET', 'PANTS', 'CAP', 'SCARF', 'GLOVES', 'GOGGLES', 'BALACLAVAS')")
     List<Equipment> findClothesEquipment();
 
-    @Query(value = "SELECT e FROM Equipment e " +
-                    "WHERE e.name IN :names " +
-                    "AND e.manufacturer IN :manufacturers " +
-                    "AND e.size IN :sizes " +
-                    "AND e.category IN :categories ")
-    List<Equipment> findEquipmentWithFiltering(@Param("names") List<String> names,
-                                               @Param("manufacturers") List<String> manufacturers,
-                                               @Param("sizes") List<String> sizes,
-                                               @Param("categories") List<Category> categories);
+//    @Query(value = "SELECT e FROM Equipment e " +
+//                    "WHERE e.name IN :names " +
+//                    "AND e.manufacturer IN :manufacturers " +
+//                    "AND e.size IN :sizes " +
+//                    "AND e.category IN :categories ")
+//    List<Equipment> findEquipmentWithFiltering(@Param("names") List<String> names,
+//                                               @Param("manufacturers") List<String> manufacturers,
+//                                               @Param("sizes") List<String> sizes,
+//                                               @Param("categories") List<Category> categories);
 
 
 

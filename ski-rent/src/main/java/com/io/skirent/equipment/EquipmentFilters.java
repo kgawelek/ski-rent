@@ -10,7 +10,7 @@ public class EquipmentFilters {
     private List<String> categories;
 
     public List<String> getNames() {
-        return names;
+        return names.stream().map(String::toUpperCase).toList();
     }
 
     public void setNames(List<String> names) {
@@ -18,7 +18,7 @@ public class EquipmentFilters {
     }
 
     public List<String> getManufacturers() {
-        return manufacturers;
+        return manufacturers.stream().map(String::toUpperCase).toList();
     }
 
     public void setManufacturers(List<String> manufacturers) {
@@ -26,15 +26,15 @@ public class EquipmentFilters {
     }
 
     public List<String> getSizes() {
-        return sizes;
+        return sizes.stream().map(String::toUpperCase).toList();
     }
 
     public void setSizes(List<String> sizes) {
         this.sizes = sizes;
     }
 
-    public List<String> getCategories() {
-        return categories;
+    public List<Category> getCategories() {
+        return categories.stream().map(Category::valueOf).toList();
     }
 
     public void setCategories(List<String> categories) {

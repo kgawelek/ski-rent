@@ -26,13 +26,13 @@ public class EquipmentController {
     }
 
     @GetMapping(path = "/gear")
-    public List<Equipment> getGearEquipment(){
-        return equipmentService.getGearEquipment();
+    public String getGearEquipment() {
+        return equipmentService.getGearEquipment().toString(); // obejście na pokazywanie id
     }
 
     @GetMapping(path = "/clothes")
-    public List<Equipment> getClothesEquipment() {
-        return equipmentService.getClothesEquipment();
+    public String getClothesEquipment() {
+        return equipmentService.getClothesEquipment().toString(); // obejście na pokazywanie id
     }
 
     @GetMapping(path = "{equipmentId}")
@@ -41,14 +41,23 @@ public class EquipmentController {
     }
 
     @GetMapping(path = "/category/{category}")
-    public Optional<Equipment> getEquipmentByCategory(@PathVariable("category") String category){
+    public List<Equipment> getEquipmentByCategory(@PathVariable("category") String category){
         return equipmentService.getEquipmentByCategory(category);
-        // TODO to chyba powinno zwracac List<Equipment> wszystkich, ktore sa z tej kategorii
     }
 
     @PostMapping(path = "/filter")
     public List<Equipment> getEquipmentWithFiltering(@RequestBody EquipmentFilters equipmentFilters) {
         return equipmentService.getEquipmentWithFiltering(equipmentFilters);
+    }
+
+    @PostMapping(path = "/filter/gear")
+    public List<Equipment> getGearWithFiltering(@RequestBody EquipmentFilters equipmentFilters) {
+        return equipmentService.getGearWithFiltering(equipmentFilters);
+    }
+
+    @PostMapping(path = "/filter/clothes")
+    public List<Equipment> getClothesWithFiltering(@RequestBody EquipmentFilters equipmentFilters) {
+        return equipmentService.getClothesWithFiltering(equipmentFilters);
     }
 
     @PostMapping

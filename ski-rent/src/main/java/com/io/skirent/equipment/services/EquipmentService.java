@@ -42,7 +42,7 @@ public class EquipmentService {
         return equipmentRepository.findClothesEquipment();
     }
 
-    public Optional<Equipment> getEquipmentByCategory(String category) {
+    public List<Equipment> getEquipmentByCategory(String category) {
         for(Category cat: Category.values()){
             if(cat.toString().equals(category))
                 return equipmentRepository.findEquipmentByCategory(category);
@@ -51,54 +51,21 @@ public class EquipmentService {
     }
 
     public List<Equipment> getEquipmentWithFiltering(EquipmentFilters equipmentFilters) {
-        // PR: po napisaniu tego zdałem sobie sprawę z tego, że jest to nieefektywne;
-        // próbowałem napisać swoje query w natywnym SQL-u, ale nie umiałem go poprawnie wywołać
-
         List<Equipment> equipmentList = equipmentRepository.findAll();
 
-        List<String> names = equipmentList.stream().map(Equipment::getName).toList(),
-                manufacturers = equipmentList.stream().map(Equipment::getManufacturer).toList(),
-                sizes = equipmentList.stream().map(Equipment::getSize).toList();
-        List<Category> categories = equipmentList.stream().map(Equipment::getCategory).toList();
-        boolean validFilters = false;
+        return filterEquipment(equipmentList, equipmentFilters);
+    }
 
-        if(equipmentFilters.getNames() != null && !equipmentFilters.getNames().isEmpty()) {
-            names = equipmentFilters.getNames().stream()
-                    .map(n -> n.toUpperCase().trim())
-                    .toList();
-            validFilters = true;
-        }
+    public List<Equipment> getGearWithFiltering(EquipmentFilters equipmentFilters) {
+        List<Equipment> equipmentList = equipmentRepository.findGearEquipment();
 
-        if(equipmentFilters.getManufacturers() != null && !equipmentFilters.getManufacturers().isEmpty()) {
-            manufacturers = equipmentFilters.getManufacturers().stream()
-                    .map(n -> n.toUpperCase().trim())
-                    .toList();
-            validFilters = true;
-        }
+        return filterEquipment(equipmentList, equipmentFilters);
+    }
 
-        if(equipmentFilters.getSizes() != null && !equipmentFilters.getSizes().isEmpty()) {
-            sizes = equipmentFilters.getSizes().stream()
-                    .map(n -> n.toUpperCase().trim())
-                    .toList();
-            validFilters = true;
-        }
+    public List<Equipment> getClothesWithFiltering(EquipmentFilters equipmentFilters) {
+        List<Equipment> equipmentList = equipmentRepository.findClothesEquipment();
 
-        if(equipmentFilters.getCategories() != null && !equipmentFilters.getCategories().isEmpty()) {
-            try {
-                categories = equipmentFilters.getCategories().stream()
-                        .map(n -> Category.valueOf(n.toUpperCase().trim()))
-                        .toList();
-                validFilters = true;
-            } catch (IllegalArgumentException e) {
-                e.printStackTrace();
-            }
-        }
-
-        if(validFilters)
-            return equipmentRepository.findEquipmentWithFiltering(names, manufacturers, sizes, categories);
-        else
-            return equipmentList;
-
+        return filterEquipment(equipmentList, equipmentFilters);
     }
 
     public void addNewEquipment(Equipment equipment) {
@@ -107,10 +74,9 @@ public class EquipmentService {
         if(equipment.getNextCheckUp().isBefore(today))
             throw new IllegalArgumentException("Next checkup date cannot be in the past");
 
-        // wszystko CAPS-em dla łatwiejszego wyszukiwania
-        equipment.setName(equipment.getName().toUpperCase());
-        equipment.setManufacturer(equipment.getManufacturer().toUpperCase());
-        equipment.setSize(equipment.getSize().toUpperCase());
+        equipment.setName(equipment.getName());
+        equipment.setManufacturer(equipment.getManufacturer());
+        equipment.setSize(equipment.getSize());
 
         equipmentRepository.save(equipment);
     }
@@ -126,5 +92,35 @@ public class EquipmentService {
     }
 
 
+    private List<Equipment> filterEquipment(List<Equipment> equipmentList, EquipmentFilters equipmentFilters) {
+        List<String> names = equipmentFilters.getNames().stream().map(String::toUpperCase).toList();
+        List<String> manufacturers = equipmentFilters.getNames().stream().map(String::toUpperCase).toList();
+        List<String> sizes = equipmentFilters.getNames().stream().map(String::toUpperCase).toList();
 
+        if(equipmentFilters.getNames() != null && !equipmentFilters.getNames().isEmpty()) {
+            equipmentList = equipmentList.stream()
+                    .filter(equipment -> equipmentFilters.getNames().contains(equipment.getName().toUpperCase()))
+                    .toList();
+        }
+
+        if(equipmentFilters.getManufacturers() != null && !equipmentFilters.getManufacturers().isEmpty()) {
+            equipmentList = equipmentList.stream()
+                    .filter(equipment -> equipmentFilters.getManufacturers().contains(equipment.getManufacturer().toUpperCase()))
+                    .toList();
+        }
+
+        if(equipmentFilters.getSizes() != null && !equipmentFilters.getSizes().isEmpty()) {
+            equipmentList = equipmentList.stream()
+                    .filter(equipment -> equipmentFilters.getSizes().contains(equipment.getSize().toUpperCase()))
+                    .toList();
+        }
+
+        if(equipmentFilters.getCategories() != null && !equipmentFilters.getCategories().isEmpty()) {
+            equipmentList = equipmentList.stream()
+                    .filter(equipment -> equipmentFilters.getCategories().contains(equipment.getCategory()))
+                    .toList();
+        }
+
+        return equipmentList;
+    }
 }
