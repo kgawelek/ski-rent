@@ -1,5 +1,6 @@
 package com.io.skirent.equipment;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class EquipmentFilters {
@@ -10,7 +11,7 @@ public class EquipmentFilters {
     private List<String> categories;
 
     public List<String> getNames() {
-        return names.stream().map(String::toUpperCase).toList();
+        return names == null ? new ArrayList<>() : names.stream().map(String::toUpperCase).toList();
     }
 
     public void setNames(List<String> names) {
@@ -18,7 +19,7 @@ public class EquipmentFilters {
     }
 
     public List<String> getManufacturers() {
-        return manufacturers.stream().map(String::toUpperCase).toList();
+        return manufacturers == null ? new ArrayList<>() : manufacturers.stream().map(String::toUpperCase).toList();
     }
 
     public void setManufacturers(List<String> manufacturers) {
@@ -26,7 +27,7 @@ public class EquipmentFilters {
     }
 
     public List<String> getSizes() {
-        return sizes.stream().map(String::toUpperCase).toList();
+        return sizes == null ? new ArrayList<>() : sizes.stream().map(String::toUpperCase).toList();
     }
 
     public void setSizes(List<String> sizes) {
@@ -34,7 +35,7 @@ public class EquipmentFilters {
     }
 
     public List<Category> getCategories() {
-        return categories.stream().map(Category::valueOf).toList();
+        return categories == null ? new ArrayList<>() :  categories.stream().map(Category::valueOf).toList();
     }
 
     public void setCategories(List<String> categories) {

@@ -36,9 +36,9 @@ body {
 
 div.right {
     position: absolute;
-    right: 0;
-    width: 16%;
-    top: 29%;
+    right: 45px;
+    width: 15%;
+    top: 28.1%;
     background-color: rgb(223, 233, 247);
     opacity: 0.95;
     padding: 10px;

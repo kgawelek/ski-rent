@@ -93,10 +93,6 @@ public class EquipmentService {
 
 
     private List<Equipment> filterEquipment(List<Equipment> equipmentList, EquipmentFilters equipmentFilters) {
-        List<String> names = equipmentFilters.getNames().stream().map(String::toUpperCase).toList();
-        List<String> manufacturers = equipmentFilters.getNames().stream().map(String::toUpperCase).toList();
-        List<String> sizes = equipmentFilters.getNames().stream().map(String::toUpperCase).toList();
-
         if(equipmentFilters.getNames() != null && !equipmentFilters.getNames().isEmpty()) {
             equipmentList = equipmentList.stream()
                     .filter(equipment -> equipmentFilters.getNames().contains(equipment.getName().toUpperCase()))
