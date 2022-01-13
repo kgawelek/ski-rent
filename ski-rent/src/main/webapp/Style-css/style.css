@@ -59,7 +59,7 @@ img.logo:hover {
 
 /* kontaktowy box */
 
-a {
+a{
     text-decoration: none;
     color: rgb(26, 25, 97);
     border-bottom: 1px dotted darkslateblue;
@@ -399,7 +399,7 @@ label {
     text-shadow: 0 0 1px black;
     background: rgb(189, 207, 231);
     position: relative;
-    left: 140px;
+    left: 120px;
     border-radius: 5px;
 }
 
@@ -458,3 +458,19 @@ label {
     color: black;
 }
 
+.input_button_reserve {
+    left: 805px;
+    padding: 10px 16px;
+    font-size: 16px;
+}
+
+.date{
+    font-size: 22px;
+    margin-left: 10px;
+    margin-right: 10px;
+    display: inline;
+    width: 300px;
+    padding: 6px 3px;
+    border: 1px solid rgb(37, 69, 110);
+    outline: 5px solid rgb(213, 228, 247);
+}
