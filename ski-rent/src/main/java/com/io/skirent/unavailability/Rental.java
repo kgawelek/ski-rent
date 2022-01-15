@@ -1,4 +1,4 @@
-package com.io.skirent.unavailibility;
+package com.io.skirent.unavailability;
 
 
 import com.io.skirent.equipment.Equipment;
@@ -29,7 +29,7 @@ public class Rental extends Unavailability {
     )
     private Long id;
 
-    @ManyToMany
+    @ManyToMany(cascade=CascadeType.ALL)
     @JoinColumn(name = "equipment_id")
     private Set<Equipment> equipmentSet;
 
@@ -54,7 +54,7 @@ public class Rental extends Unavailability {
     )
     private float deposit;
 
-    @ManyToOne
+    @ManyToOne()
     @JoinColumn(name = "user_id")
     private Client client;
 
