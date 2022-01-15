@@ -5,5 +5,18 @@ package com.io.skirent.unavailability;
  */
 public class AvailabilityResult {
     boolean isAvailable;
-    int equipmentId;
+    Long equipmentId;
+
+    public AvailabilityResult(boolean isAvailable, Long equipmentId) {
+        this.isAvailable = isAvailable;
+        this.equipmentId = equipmentId;
+    }
+
+    public boolean isAvailable() {
+        return isAvailable;
+    }
+
+    public Long getEquipmentId() {
+        return equipmentId;
+    }
 }

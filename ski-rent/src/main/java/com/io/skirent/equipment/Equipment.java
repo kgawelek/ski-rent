@@ -53,6 +53,10 @@ public class Equipment {
     )
     private LocalDate nextCheckUp;
 
+    public Long getId() {
+        return id;
+    }
+
     @Column(
             name = "category",
             nullable = false,

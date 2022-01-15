@@ -20,10 +20,10 @@ public class UnavailabilityController {
         this.unavailabilityService = unavailabilityService;
     }
 
-/*    @PostMapping(path = "/check")
-    public AvailabilityResult checkEquipmentAvailability(@RequestParam UnavailabilityCheckParams params){
+    @PostMapping(path = "/check")
+    public AvailabilityResult checkEquipmentAvailability(@RequestBody UnavailabilityCheckParams params){
         return unavailabilityService.checkAvailability(params);
-    }*/
+    }
 
     @PostMapping(path = "/newrent")
     public void addNewRent(@RequestBody Rental rental){
