@@ -21,12 +21,12 @@ public class UnavailabilityController {
     }
 
 /*    @PostMapping(path = "/check")
-    public AvailabilityResult checkEquipmentAvailibilty(@RequestParam UnavailabilityCheckParams params){
+    public AvailabilityResult checkEquipmentAvailability(@RequestParam UnavailabilityCheckParams params){
         return unavailabilityService.checkAvailability(params);
     }*/
 
     @PostMapping(path = "/newrent")
-    public void addNewRent(@RequestParam Rental rental){
+    public void addNewRent(@RequestBody Rental rental){
         unavailabilityService.addRental(rental);
     }
 
