@@ -1,10 +1,9 @@
-package com.io.skirent.unavailibility;
+package com.io.skirent.unavailability;
 
 
 import com.io.skirent.equipment.Equipment;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 
 @Entity
 @Table(

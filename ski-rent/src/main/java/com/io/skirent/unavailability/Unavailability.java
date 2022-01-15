@@ -1,4 +1,4 @@
-package com.io.skirent.unavailibility;
+package com.io.skirent.unavailability;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;

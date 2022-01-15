@@ -74,6 +74,7 @@ public class EquipmentService {
         if(equipment.getNextCheckUp().isBefore(today))
             throw new IllegalArgumentException("Next checkup date cannot be in the past");
 
+        // TODO WTF???
         equipment.setName(equipment.getName());
         equipment.setManufacturer(equipment.getManufacturer());
         equipment.setSize(equipment.getSize());
