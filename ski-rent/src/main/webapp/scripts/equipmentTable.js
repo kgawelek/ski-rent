@@ -138,8 +138,9 @@ function createEquipmentTable(data, equipmentType, generateFilters = true) {
 
         let filterButton = document.createElement('input');
         filterButton.type = 'button';
+        // filterButton.className = 'input_button_submit center';
         filterButton.value = 'Zastosuj filtry';
-        filterButton.className = 'center';
+        filterButton.className = 'input_button_submit center';
         filterButton.addEventListener("click", applyFilters);
 
         divFilters.append(

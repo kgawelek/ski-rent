@@ -7,12 +7,9 @@
     <meta name="keywords" content="stronka, strona">
     <meta name="robots" content="index, follow">
     <link rel="stylesheet" href="Style-css/style.css">
-    <script src="scripts/equipmentTable.js"></script>
 </head>
 
-<body onload="fetchAndCreateEquipmentTable('clothes')">
-<div class="right" id="filters">
-</div>
+<body>
 <div class="center">
     <div id="kontener">
         <div data-include="header"></div>
@@ -23,17 +20,21 @@
             </div>
             <div id="srodkowa_czesc_zawartosci">
                 <div id="tekst">
-                    <div id="clothes_table">
-                        <h2>ODZIEŻ NARCIARSKA</h2>
-                    </div>
-                <input class="input_button_submit input_button_reserve" onclick="location.href='reservation.html';" type="submit" name="reservation" value="Rezerwuj">
+                    <h2>TWOJA REZERWACJA</h2>
+                    <h3>Wybrane przez Ciebie produkty:</h3>
+                    <h3>Czas rezerwacji:</h3>
+                    Od <input type="date" class="date" name="From"> Do <input type="date" class="date"  name="To"> <br>
+                    <br><h3>Cena całkowita za wypożyczenie:</h3>
+                    <p> 100 zł </p>
+                    <input class="input_button_submit input_button_reserve" onclick="location.href='reservation.html';" type="submit" name="approve" value="Zatwierdź"></label>
 
                 </div>
             </div>
         </div>
     </div>
 </div>
-<script src="scripts/load-scripts.js"></script>
 </body>
+
+<script src="scripts/load-scripts.js"></script>
 
 </html>
