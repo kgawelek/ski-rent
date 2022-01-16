@@ -12,6 +12,6 @@ import java.util.List;
 @Repository
 public interface RentalRepository extends JpaRepository<Rental, Long> {
 
-    @Query("SELECT r FROM Rental r WHERE (r.from < ?1 AND r.to > ?1) OR (r.from < ?2 AND r.to > ?2) OR (r.from > ?1 AND r.to < ?2)")
-    List<Rental> getRentalsByDate(LocalDate dateFrom, LocalDate dateTo);
+    @Query("SELECT r FROM Rental r WHERE (r.from <= ?1 AND r.to >= ?1) OR (r.from <= ?2 AND r.to >= ?2) OR (r.from >= ?1 AND r.to <= ?2)")
+    List<Rental> getCollidingRentalsByDate(LocalDate dateFrom, LocalDate dateTo);
 }
