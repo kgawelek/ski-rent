@@ -39,6 +39,7 @@ public class CheckUp extends Unavailability {
     )
     private boolean done;
 
+    // TODO co to jest za zmienna?
     @Column(
             name = "date",
             columnDefinition = "DATE"
