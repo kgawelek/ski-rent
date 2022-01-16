@@ -3,15 +3,15 @@ package com.io.skirent.unavailability;
 import java.time.LocalDate;
 
 public class UnavailabilityCheckParams {
-    int equipmentId;
+    Long equipmentId;
     LocalDate fromDate;
     LocalDate toDate;
 
-    public int getEquipmentId() {
+    public Long getEquipmentId() {
         return equipmentId;
     }
 
-    public void setEquipmentId(int equipmentId) {
+    public void setEquipmentId(Long equipmentId) {
         this.equipmentId = equipmentId;
     }
 
