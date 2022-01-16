@@ -45,7 +45,7 @@ public class EquipmentService {
     public List<Equipment> getEquipmentByCategory(String category) {
         for(Category cat: Category.values()){
             if(cat.toString().equals(category))
-                return equipmentRepository.findEquipmentByCategory(category);
+                return equipmentRepository.findEquipmentByCategory(cat);
         }
         throw new IllegalStateException("Category:  " + category + " doesnt exists");
     }
