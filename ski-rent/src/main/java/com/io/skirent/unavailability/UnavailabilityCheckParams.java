@@ -7,6 +7,12 @@ public class UnavailabilityCheckParams {
     LocalDate fromDate;
     LocalDate toDate;
 
+    public UnavailabilityCheckParams(Long equipmentId, LocalDate fromDate, LocalDate toDate) {
+        this.equipmentId = equipmentId;
+        this.fromDate = fromDate;
+        this.toDate = toDate;
+    }
+
     public Long getEquipmentId() {
         return equipmentId;
     }

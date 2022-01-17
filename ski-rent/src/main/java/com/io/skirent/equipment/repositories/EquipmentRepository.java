@@ -14,7 +14,7 @@ import java.util.Optional;
 public interface EquipmentRepository extends JpaRepository<Equipment, Long> {
 
     @Query("SELECT e FROM Equipment e WHERE e.category = ?1")
-    List<Equipment> findEquipmentByCategory(String category);
+    List<Equipment> findEquipmentByCategory(Category category);
 
     @Query("SELECT e FROM Equipment e WHERE e.category IN ('SKI', 'SNOWBOARD', 'SKI_POLES', 'SKI_BOOTS', 'SNOWBOARD_BOOTS', 'HELMET')")
     List<Equipment> findGearEquipment();

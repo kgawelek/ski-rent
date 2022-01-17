@@ -1,6 +1,7 @@
 package com.io.skirent.unavailability.services;
 
 import com.io.skirent.equipment.Equipment;
+import com.io.skirent.equipment.repositories.EquipmentRepository;
 import com.io.skirent.unavailability.*;
 import com.io.skirent.unavailability.repositories.CheckUpRepository;
 import com.io.skirent.unavailability.repositories.RentalRepository;
@@ -15,16 +16,51 @@ public class UnavailabilityService {
     RentalRepository rentalRepository;
     RepairRepository repairRepository;
     CheckUpRepository checkUpRepository;
+    EquipmentRepository equipmentRepository;
 
     @Autowired
-    public UnavailabilityService(RentalRepository rentalRepository, RepairRepository repairRepository, CheckUpRepository checkUpRepository) {
+    public UnavailabilityService(RentalRepository rentalRepository, RepairRepository repairRepository, CheckUpRepository checkUpRepository, EquipmentRepository equipmentRepository) {
         this.rentalRepository = rentalRepository;
         this.repairRepository = repairRepository;
         this.checkUpRepository = checkUpRepository;
+        this.equipmentRepository = equipmentRepository;
     }
 
-    // TODO find alternatives if equipment is not available and test properly
+    // TODO przetestowac to dokladnie
     public AvailabilityResult checkAvailability(UnavailabilityCheckParams params) {
+        boolean dateCollides = checkIfDatesCollides(params);
+
+        Long id = params.getEquipmentId();
+        if(dateCollides)
+            id = findAlternative(params);
+
+        AvailabilityResult result = new AvailabilityResult(!dateCollides, id);
+        return result;
+    }
+
+    public void addRental(Rental rental) {
+        rentalRepository.save(rental);
+    }
+
+    public List<Rental> getAllRentals() {
+        return rentalRepository.findAll();
+    }
+
+    private Long findAlternative(UnavailabilityCheckParams params){
+        Equipment equipment = equipmentRepository.getById(params.getEquipmentId());
+        List<Equipment> sameCategoryEquipment = equipmentRepository.findEquipmentByCategory(equipment.getCategory());
+
+        for(var e: sameCategoryEquipment){
+            UnavailabilityCheckParams tempParams = new UnavailabilityCheckParams(e.getId(), params.getFromDate(), params.getToDate());
+            boolean datesCollides = checkIfDatesCollides(tempParams);
+            if(!datesCollides && e.getSize().equals(equipment.getSize()))
+                return e.getId();
+
+        }
+        return -1L;
+    }
+
+    private boolean checkIfDatesCollides(UnavailabilityCheckParams params){
         List<Rental> collidingRentals = rentalRepository.getCollidingRentalsByDate(params.getFromDate(), params.getToDate());
         boolean dateCollides = false;
 
@@ -60,21 +96,6 @@ public class UnavailabilityService {
             }
         }
 
-
-        AvailabilityResult result = new AvailabilityResult(!dateCollides, params.getEquipmentId());
-        return result;
+        return dateCollides;
     }
-
-    public void addRental(Rental rental) {
-        rentalRepository.save(rental);
-    }
-
-    public List<Rental> getAllRentals() {
-        return rentalRepository.findAll();
-    }
-
-    // for query tests
-//    public List<Rental> getByDate(UnavailabilityCheckParams params){
-//        return rentalRepository.getRentalsByDate(params.getFromDate(), params.getToDate());
-//    }
 }
