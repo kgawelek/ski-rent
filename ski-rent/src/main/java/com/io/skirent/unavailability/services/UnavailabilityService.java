@@ -6,14 +6,12 @@ import com.io.skirent.unavailability.*;
 import com.io.skirent.unavailability.repositories.CheckUpRepository;
 import com.io.skirent.unavailability.repositories.RentalRepository;
 import com.io.skirent.unavailability.repositories.RepairRepository;
-import com.io.skirent.user.Client;
-import com.io.skirent.user.User;
 import com.io.skirent.user.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -34,16 +32,14 @@ public class UnavailabilityService {
         this.userRepository = userRepository;
     }
 
-    // TODO przetestowac to dokladnie
     public AvailabilityResult checkAvailability(UnavailabilityCheckParams params) {
-        boolean dateCollides = checkIfDatesCollides(params);
+        boolean dateCollides = checkIfDatesCollide(params);
 
         Long id = params.getEquipmentId();
         if(dateCollides)
             id = findAlternative(params);
 
-        AvailabilityResult result = new AvailabilityResult(!dateCollides, id);
-        return result;
+        return new AvailabilityResult(!dateCollides, id);
     }
 
     public void addRental(Rental rental) {
@@ -69,7 +65,7 @@ public class UnavailabilityService {
 
         for(var e: sameCategoryEquipment){
             UnavailabilityCheckParams tempParams = new UnavailabilityCheckParams(e.getId(), params.getFromDate(), params.getToDate());
-            boolean datesCollides = checkIfDatesCollides(tempParams);
+            boolean datesCollides = checkIfDatesCollide(tempParams);
             if(!datesCollides && e.getSize().equals(equipment.getSize()))
                 return e.getId();
 
@@ -77,42 +73,34 @@ public class UnavailabilityService {
         return -1L;
     }
 
-    private boolean checkIfDatesCollides(UnavailabilityCheckParams params){
+    private boolean checkIfDatesCollide(UnavailabilityCheckParams params){
         List<Rental> collidingRentals = rentalRepository.getCollidingRentalsByDate(params.getFromDate(), params.getToDate());
-        boolean dateCollides = false;
 
         //find rents with given equipment that collides with rentals
         for (var rental : collidingRentals) {
             for (Equipment e : rental.getEquipmentSet()) {
-                if (e.getId() == params.getEquipmentId()) {
-                    dateCollides = true;
-                    break;
+                if (Objects.equals(e.getId(), params.getEquipmentId())) {
+                    return true; // date collides
                 }
             }
         }
 
-        if (!dateCollides) {
-            List<Repair> collidingRepairs = repairRepository.getRepairsByDate(params.getFromDate(), params.getToDate());
-            //find rents with given equipment that collides with repairs
-            for (var repair : collidingRepairs) {
-                if (repair.getEquipment().getId() == params.getEquipmentId()) {
-                    dateCollides = true;
-                    break;
-                }
+        List<Repair> collidingRepairs = repairRepository.getRepairsByDate(params.getFromDate(), params.getToDate());
+        //find rents with given equipment that collides with repairs
+        for (var repair : collidingRepairs) {
+            if (Objects.equals(repair.getEquipment().getId(), params.getEquipmentId())) {
+                return true; // date collides
             }
         }
 
-        if (!dateCollides) {
-            List<CheckUp> collidingCheckUps = checkUpRepository.getCheckUpsByDate(params.getFromDate(), params.getToDate());
-            //find rents with given equipment that collides with check-ups
-            for (var checkup : collidingCheckUps) {
-                if (checkup.getEquipment().getId() == params.getEquipmentId()) {
-                    dateCollides = true;
-                    break;
-                }
+        List<CheckUp> collidingCheckUps = checkUpRepository.getCheckUpsByDate(params.getFromDate(), params.getToDate());
+        //find rents with given equipment that collides with check-ups
+        for (var checkup : collidingCheckUps) {
+            if (Objects.equals(checkup.getEquipment().getId(), params.getEquipmentId())) {
+                return true; // date collides
             }
         }
 
-        return dateCollides;
+        return false; // date does not collide
     }
 }
