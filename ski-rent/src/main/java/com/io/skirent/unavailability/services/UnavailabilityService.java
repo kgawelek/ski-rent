@@ -6,10 +6,15 @@ import com.io.skirent.unavailability.*;
 import com.io.skirent.unavailability.repositories.CheckUpRepository;
 import com.io.skirent.unavailability.repositories.RentalRepository;
 import com.io.skirent.unavailability.repositories.RepairRepository;
+import com.io.skirent.user.Client;
+import com.io.skirent.user.User;
+import com.io.skirent.user.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class UnavailabilityService {
@@ -17,13 +22,16 @@ public class UnavailabilityService {
     RepairRepository repairRepository;
     CheckUpRepository checkUpRepository;
     EquipmentRepository equipmentRepository;
+    UserRepository userRepository;
 
     @Autowired
-    public UnavailabilityService(RentalRepository rentalRepository, RepairRepository repairRepository, CheckUpRepository checkUpRepository, EquipmentRepository equipmentRepository) {
+    public UnavailabilityService(RentalRepository rentalRepository, RepairRepository repairRepository, CheckUpRepository checkUpRepository,
+                                 EquipmentRepository equipmentRepository, UserRepository userRepository) {
         this.rentalRepository = rentalRepository;
         this.repairRepository = repairRepository;
         this.checkUpRepository = checkUpRepository;
         this.equipmentRepository = equipmentRepository;
+        this.userRepository = userRepository;
     }
 
     // TODO przetestowac to dokladnie
@@ -39,6 +47,15 @@ public class UnavailabilityService {
     }
 
     public void addRental(Rental rental) {
+        rental.setEquipmentSet(
+            rental.getEquipmentSet().stream()
+                    .map(equipment -> equipmentRepository.getById(equipment.getId()))
+                    .collect(Collectors.toSet())
+        ); // set equipments by id only
+        rental.setClient(
+                userRepository.findClientById(rental.getClient().getId()).orElseThrow()
+        ); // set client by id only
+
         rentalRepository.save(rental);
     }
 

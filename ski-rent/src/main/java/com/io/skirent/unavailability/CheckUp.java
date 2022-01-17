@@ -40,6 +40,7 @@ public class CheckUp extends Unavailability {
     private boolean done;
 
     // TODO co to jest za zmienna?
+    // PR: data wykonania przegladu
     @Column(
             name = "date",
             columnDefinition = "DATE"

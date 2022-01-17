@@ -1,7 +1,7 @@
 package com.io.skirent.unavailability;
 
 /**
- * Class for checking availibilty, returns if given equipment is availble, if not it returns similar equipment that is available
+ * Class for checking availability, returns if given equipment is available, if not it returns similar equipment that is available
  */
 public class AvailabilityResult {
     boolean isAvailable;
