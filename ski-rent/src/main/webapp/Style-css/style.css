@@ -459,9 +459,10 @@ label {
 }
 
 .input_button_reserve {
-    left: 805px;
+    left: 715px;
     padding: 10px 16px;
     font-size: 16px;
+    margin: 5px;
 }
 
 .date{

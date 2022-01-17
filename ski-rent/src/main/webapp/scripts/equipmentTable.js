@@ -19,7 +19,7 @@ function makeEquipmentRow(equipment) {
                     <td>${equipment.manufacturer}</td>
                     <td>${equipment.size}</td>
                     <td>
-                        <input type="checkbox" id="${equipment.id}" name="${equipment.id}" style="font-size: 2em" />
+                        <input type="checkbox" class="equipment" id="${equipment.id}" name="${equipment.id}" style="font-size: 2em" />
                     </td>`;
     return row;
 }
