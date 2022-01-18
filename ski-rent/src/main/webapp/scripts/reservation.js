@@ -130,6 +130,84 @@ function calculatePrice() {
 }
 
 function acceptReservation() {
+    const valueFrom = document.querySelector('input#from').value;
+    const valueTo = document.querySelector('input#to').value;
+    if(!valueFrom || !valueTo || valueFrom > valueTo) {
+        return;
+    }
+
+    const idArray = window.localStorage.getItem('ids') ? window.localStorage.getItem('ids').split('&') : [];
+
+    const requestBody = {
+        equipmentId: -1,
+        fromDate: valueFrom,
+        toDate: valueTo
+    };
+
+    /** @type {Map<string, string>} */
+    let categoryTitlePairsMap = new Map([
+        ['SKI_POLES', 'Kijki narciarskie'],
+        ['SKI', 'Narty'],
+        ['SNOWBOARD', 'Deski snowboardowe'],
+        ['GOGGLES', 'Gogle narciarskie i snowboardowe'],
+        ['SKI_BOOTS', 'Buty narciarskie'],
+        ['SNOWBOARDS_BOOTS', 'Buty snowboardowe'],
+        ['HELMET', 'Kaski'],
+        ['PANTS', 'Spodnie'],
+        ['JACKET', 'Kurtki'],
+        ['GLOVES', 'Rękawice'],
+        ['BALACLAVAS', 'Kominiarki'],
+        ['CAP', 'Czapki'],
+        ['SCARF', 'Szaliki']
+    ]);
+
+    const printEquipment = (equipment) => {
+        return `
+        ${equipment.manufacturer} ${equipment.name}
+        rozmiar ${equipment.size}, kategoria ${categoryTitlePairsMap.get(equipment.category)}
+        `
+    }
+
+    idArray.forEach(id => {
+        requestBody.equipmentId = id;
+        fetch('api/available/check', {
+            method: 'POST',
+            body: JSON.stringify(requestBody),
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                Pragma: 'no-cache'
+            }
+        })
+            .then(response => response.json())
+            .then(response => {
+                fetch(`/api/equipment/${id}`)
+                    .then(res => res.json())
+                    .then(equipment => {
+                        if (response.equipmentId != -1) {
+                            if (response.available) {
+                                alert('Sprzęt: ' + printEquipment(equipment) + 'jest dostępny');
+                            }
+                            else {
+                                let message = 'Sprzęt: ' + printEquipment(equipment) + 'jest niedostępny, znaleziono alternatywny sprzęt:';
+                                fetch(`/api/equipment/${response.equipmentId}`)
+                                    .then(res => res.json())
+                                    .then(altEq => {
+                                        alert(message + printEquipment(altEq));
+                                    });
+                            }
+                        }
+                        else { // response.equipmentId == -1
+                            if (!response.available) {
+                                alert('Sprzęt: ' + printEquipment(equipment) + 'jest niedostępny, nie znaleziono alternatyw');
+                            }
+                            else
+                                console.error('Invalid response' + response);
+                        }
+                    });
+            });
+    });
+
 
 
 }
