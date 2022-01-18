@@ -39,23 +39,13 @@ public class CheckUp extends Unavailability {
     )
     private boolean done;
 
-    // TODO co to jest za zmienna?
-    // PR: data wykonania przegladu
-    @Column(
-            name = "date",
-            columnDefinition = "DATE"
-
-    )
-    private LocalDate date;
-
     public CheckUp() {
     }
 
-    public CheckUp(Long id, Equipment equipment, boolean done, LocalDate date) {
+    public CheckUp(Long id, Equipment equipment, boolean done) {
         this.id = id;
         this.equipment = equipment;
         this.done = done;
-        this.date = date;
     }
 
     public Long getId() {
@@ -80,13 +70,5 @@ public class CheckUp extends Unavailability {
 
     public void setDone(boolean done) {
         this.done = done;
-    }
-
-    public LocalDate getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
     }
 }
