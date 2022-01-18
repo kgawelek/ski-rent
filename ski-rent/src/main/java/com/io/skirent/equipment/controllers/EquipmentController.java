@@ -2,10 +2,13 @@ package com.io.skirent.equipment.controllers;
 
 import com.io.skirent.equipment.Equipment;
 import com.io.skirent.equipment.EquipmentFilters;
+import com.io.skirent.equipment.models.RentalRequestDTO;
 import com.io.skirent.equipment.services.EquipmentService;
+import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -68,6 +71,11 @@ public class EquipmentController {
     @DeleteMapping(path = "{equipmentId}")
     public void deleteEquipment(@PathVariable("equipmentId") Long equipmentId){
         equipmentService.deleteEquipment(equipmentId);
+    }
+
+    @PostMapping(path = "/price")
+    public long GetRentalPrice(@RequestBody RentalRequestDTO requestDTO) {
+        return equipmentService.getRentalPrice(requestDTO.getIds(), requestDTO.getDateFrom(), requestDTO.getDateTo());
     }
 
 }

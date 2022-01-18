@@ -25,9 +25,9 @@
                     <h3>Wybrane przez Ciebie produkty:</h3>
                     <div id="reservation_items_table"></div>
                     <h3>Czas rezerwacji:</h3>
-                    Od <input type="date" class="date" name="from"> do <input type="date" class="date" name="to"> <br>
+                    Od <input type="date" class="date" name="from" id="from" oninput="calculatePrice()"> do <input type="date" class="date" name="to" id="to" oninput="calculatePrice()"> <br>
                     <br><h3>Cena całkowita za wypożyczenie:</h3>
-                    <p><h4>100 zł</h4></p>
+                    <p><h4><span id="price">-</span> zł</h4></p>
                     <input class="input_button_submit input_button_reserve" onclick="window.localStorage.removeItem('ids'); location.href = 'reservation.html'" type="submit" name="approve" value="Wyczyść">
                     <input class="input_button_submit input_button_reserve" onclick="acceptReservation()" type="submit" name="approve" value="Zatwierdź">
 

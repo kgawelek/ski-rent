@@ -4,22 +4,27 @@ import com.io.skirent.equipment.Category;
 import com.io.skirent.equipment.Equipment;
 import com.io.skirent.equipment.EquipmentFilters;
 import com.io.skirent.equipment.repositories.EquipmentRepository;
+import com.io.skirent.equipment.repositories.PriceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.List;
-import java.util.Optional;
+import java.time.temporal.ChronoUnit;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class EquipmentService {
 
     private final EquipmentRepository equipmentRepository;
+    private final PriceRepository priceRepository;
 
     @Autowired
-    public EquipmentService(EquipmentRepository equipmentRepository){
+    public EquipmentService(EquipmentRepository equipmentRepository, PriceRepository priceRepository){
         this.equipmentRepository = equipmentRepository;
+        this.priceRepository = priceRepository;
     }
+
 
     public List<Equipment> getAllEquipment() {
         return equipmentRepository.findAll();
@@ -114,5 +119,29 @@ public class EquipmentService {
         }
 
         return equipmentList;
+    }
+
+    public long getRentalPrice(Long[] ids, LocalDate from, LocalDate to) {
+        var lambdaContext = new Object() {
+            long totalPrice = 0;
+            long tmpPeriod;
+        };
+        long period = ChronoUnit.DAYS.between(from, to) + 1; // + 1 for double inclusive
+
+        for (long id : ids) {
+            lambdaContext.tmpPeriod = period;
+            TreeMap<Integer, Integer> prices = new TreeMap<>(Comparator.reverseOrder());
+            Category category = equipmentRepository.getById(id).getCategory();
+            priceRepository.findPricesByCategory(category)
+                    .forEach(price -> prices.put(price.getNumberOfDays(), price.getPricePerPeriod()));
+            prices.forEach((days, price) -> {
+                lambdaContext.totalPrice += (lambdaContext.tmpPeriod / days) * price; // price += number of periods * price of period
+                lambdaContext.tmpPeriod = lambdaContext.tmpPeriod % days; // period -= number of periods * days of period
+            });
+            if(lambdaContext.tmpPeriod != 0)
+                throw new IllegalStateException("Cannot calculate price for id: " + id + " and number of days: " + period);
+        }
+
+        return lambdaContext.totalPrice;
     }
 }
