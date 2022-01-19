@@ -1,0 +1,201 @@
+{
+	"info": {
+		"_postman_id": "c52cad33-27db-4c6f-b00d-644823c48a22",
+		"name": "IO ski-rent",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "New rent",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"equipmentSet\": [\r\n        {\r\n            \"id\": 1\r\n        },\r\n        {\r\n            \"id\": 9\r\n        }\r\n    ],\r\n    \"accepted\": true,\r\n    \"returned\": false,\r\n    \"deposit\": 500,\r\n    \"client\": {\r\n        \"id\": 11\r\n    },\r\n    \"from\": \"2022-02-12\",\r\n    \"to\": \"2022-02-15\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/available/newrent/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"available",
+						"newrent",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Equipment filtering",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"names\": [],\r\n    \"manufacturers\": [\r\n        \"Producent\",\r\n        \"Producent spodni\"\r\n    ],\r\n    \"sizes\": [\r\n        \"L\"\r\n    ],\r\n    \"categories\": []\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/equipment/filter/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"equipment",
+						"filter",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get equipment",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/equipment/gear",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"equipment",
+						"gear"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get rentals",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/available/rents",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"available",
+						"rents"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check availability",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"equipmentId\": 6,\r\n    \"fromDate\": \"2022-01-22\",\r\n    \"toDate\": \"2022-01-29\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/available/check",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"available",
+						"check"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get equipment by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/equipment/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"equipment",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get price",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ids\": [\"1\", \"2\"],\r\n    \"dateFrom\": \"2022-01-18\",\r\n    \"dateTo\": \"2022-01-19\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/equipment/price",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"equipment",
+						"price"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -53,6 +53,10 @@ public class Equipment {
     )
     private LocalDate nextCheckUp;
 
+    public Long getId() {
+        return id;
+    }
+
     @Column(
             name = "category",
             nullable = false,
@@ -110,5 +114,18 @@ public class Equipment {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    @Override
+    public String toString() { // obejście na pokazywanie id
+        return """
+                                
+                \t{
+                        "id": "%d",
+                        "name": "%s",
+                        "manufacturer": "%s",
+                        "size": "%s",
+                        "category": "%s"
+                    }""".formatted(id, name, manufacturer, size, category.toString());
     }
 }

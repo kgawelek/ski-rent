@@ -13,4 +13,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     @Query("select c from Client c where c.email = ?1")
     Optional<Client> findClientByEmail(String email);
+
+    @Query("select c from Client c where c.id = ?1")
+    Optional<Client> findClientById(Long id);
 }

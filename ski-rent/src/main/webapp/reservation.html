@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pl" style="scroll-behavior: smooth ;">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Wypożyczalnia</title>
+    <meta name="keywords" content="stronka, strona">
+    <meta name="robots" content="index, follow">
+    <link rel="stylesheet" href="Style-css/style.css">
+    <script src="scripts/reservation.js"></script>
+</head>
+
+<body onload="readHash()">
+<div class="center">
+    <div id="kontener">
+        <div data-include="header"></div>
+        <div data-include="middle-menu"></div>
+        <div class="zawartosc">
+            <div id="gorna_czesc_zawartosci">
+
+            </div>
+            <div id="srodkowa_czesc_zawartosci">
+                <div id="tekst">
+                    <h2>TWOJA REZERWACJA</h2>
+                    <h3>Wybrane przez Ciebie produkty:</h3>
+                    <div id="reservation_items_table"></div>
+                    <h3>Czas rezerwacji:</h3>
+                    Od <input type="date" class="date" name="from" id="from" oninput="calculatePrice()"> do <input type="date" class="date" name="to" id="to" oninput="calculatePrice()"> <br>
+                    <br><h3>Cena całkowita za wypożyczenie:</h3>
+                    <p><h4><span id="price">-</span> zł</h4></p>
+                    <input class="input_button_submit input_button_reserve" onclick="window.localStorage.removeItem('ids'); location.href = 'reservation.html'" type="submit" name="approve" value="Wyczyść">
+                    <input class="input_button_submit input_button_reserve" onclick="acceptReservation()" type="submit" name="approve" value="Zatwierdź">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+<script src="scripts/load-scripts.js"></script>
+
+</html>
